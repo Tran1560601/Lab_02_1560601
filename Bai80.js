@@ -1,0 +1,27 @@
+var arr = [];
+const fs = require('fs');
+var src_filename = 'data.txt';
+var des_filename = './Output/Bai80.out';
+
+fs.readFile(src_filename, function(err, data){
+    arr = data.toString().split(" ");
+    
+    console.log("------Dao Nguoc Chuoi------");
+    for(let i = 0; i < arr.length / 2; i++)
+    {
+        var temp = arr[i];
+            arr[i] = arr[arr.length-1-i];
+            arr[arr.length-1-i] = temp; 
+    }
+    for(let i = 0; i < arr.length; i+=1){
+        console.log(arr[i]);
+    }
+
+    fs.writeFile(des_filename, arr, function(err) {
+        if(err) {
+            return console.log(err);
+        }
+        console.log("The file was saved!");
+    })
+
+});   
